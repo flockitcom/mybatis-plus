@@ -34,8 +34,3 @@ build/
 mvnw
 mvnw.cmd
 .mvn/
-
-# Ignore everything in this directory
-*
-# Except this file
-!.gitignore
