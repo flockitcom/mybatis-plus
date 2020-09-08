@@ -1,0 +1,70 @@
+server:
+  port: 8080
+
+swaggerui:
+  isEnable: true  #测试环境为true 正式环境改为false swagger-ui是否可见
+
+spring:
+  # 没用redis 需设置
+  session:
+    store-type: redis  #可以设置null
+  #文件上传限制
+  servlet:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 100MB
+  redis:
+    password:
+    timeout: 10000  #redis操作的超时时间
+    database: 0
+    cluster:
+      nodes: 127.0.0.1:6373
+      max-redirects: 5
+    jedis:
+      pool:
+        max-active: -1  #最大连接数
+        max-idle: -1   #最大空闲数
+        min-idle: 0     #最小空闲数
+        max-wait: -1    #连接池耗尽时，新获取连接需要等待的最大时间
+  rabbitmq:
+    host: *
+    port: 5672
+    username: guest
+    password: guest
+  datasource:
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候会抛出异常,不启动则使用默认数据源.
+      datasource:
+        master:
+          url: 127.0.0.1:3306/mybatisPlus?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=true&useSSL=false&serverTimezone=Asia/Shanghai
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        slave_1:
+          url: 127.0.0.1:3306/mybatisPlus?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=true&useSSL=false&serverTimezone=Asia/Shanghai
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        slave_2:
+          url: 127.0.0.1:3306/mybatisPlus?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=true&useSSL=false&serverTimezone=Asia/Shanghai
+            username: root
+            password: root
+            driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  # 配置日志(控制台打印)
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  # 如果是放在src/main/java目录下 classpath:/com/*/*/mapper/*Mapper.xml
+  # 如果是放在resource目录 classpath:/mapper/**.xml
+  mapper-locations: classpath*:/mybatisMapper/**.xml
+
+fastdfs:
+  protocol: http://
+  tracker-server: 127.0.0.1
+  port: 22122
