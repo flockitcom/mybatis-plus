@@ -5,7 +5,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import org.apache.ibatis.annotations.Param;
 
+import java.io.Serializable;
+
 public interface MyBaseMapper<T> extends BaseMapper<T> {
+
     /**
      * 物理删除
      */
